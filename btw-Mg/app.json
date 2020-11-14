@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/postlist/postlist",
+    "pages/head/head",
+    "pages/logs/logs",
+    "pages/publish/publish",
+    "pages/postdetail/postdetail",
+    "pages/authorize/authorize",
+    "pages/personal center/orderdetail/orderdetail",
+    "pages/personal center/receive/receive",
+    "pages/personal center/notreceive/all/all",
+    "pages/personal center/notreceive/detail/detail",
+    "pages/personal center/deliver/all/all",
+    "pages/personal center/deliver/detail/detail",
+    "pages/personal center/notdeliver/all/all",
+    "pages/personal center/notdeliver/detail/detail",
+    "pages/personal center/index/index",
+    "pages/personal center/index/faceAuthentication/faceAuthentication",
+    "pages/personal center/balance/balance",
+    "pages/personal center/preference/preference",
+    "pages/personal center/address/address",
+    "pages/personal center/addressAdd/addressAdd",
+    "pages/personal center/feedback/feedback",
+    "pages/personal center/aboutus/aboutus"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#578556",
+    "navigationBarTitleText": "B T W (华师内测)",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#29335c",
+    "list": [
+      {
+        "pagePath": "pages/postlist/postlist",
+        "iconPath": "images/explore2.png",
+        "selectedIconPath": "images/selected_explore2.png",
+        "text": "Explore"
+      },
+      {
+        "pagePath": "pages/personal center/index/index",
+        "iconPath": "images/home2.png",
+        "selectedIconPath": "images/selected_home2.png",
+        "text": "Home"
+      }
+    ]
+  },
+  "cloud": true,
+  "sitemapLocation": "sitemap.json"
+}
