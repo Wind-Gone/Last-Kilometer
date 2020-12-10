@@ -48,4 +48,5 @@ public class UserService {
     public List<User> getGoodScore(double score) {
         return userRepository.findGoodScore(score);
     }
+
 }
