@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "标签实体类")
 public class Tag {
     /* 1是大件 2是中件 3是大件 */
-    @ApiModelProperty(value = "快递大小")
+    @ApiModelProperty(value = "期望抢的订单的快递大小")
     private int parcelSize;
 
     /*  1 2 3 4 ... 区分各个时间段 */
