@@ -1,5 +1,8 @@
 package com.example.accessingdatamongodb.Entity;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel(value = "标签实体类")
 public class Tag {
     /* 1是大件 2是中件 3是大件 */
     private int parcelSize;

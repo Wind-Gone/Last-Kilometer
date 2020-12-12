@@ -2,13 +2,11 @@ package com.example.accessingdatamongodb.Controller;
 
 
 import com.example.accessingdatamongodb.Entity.User;
-import com.example.accessingdatamongodb.Repository.UserRepository;
 import com.example.accessingdatamongodb.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
-import java.util.*;
+import java.util.List;
 
 
 @RestController
@@ -24,46 +22,48 @@ public class UserController {
     }
 
     @GetMapping("/getByName/{name}")
-    public List<User> getByName(@PathVariable String name){
+    public List<User> getByName(@PathVariable String name) {
         return userService.getByName(name);
     }
 
     //大于score的用户
     @GetMapping("/getGoodScore/{score}")
-    public List<User> getGoodScore(@PathVariable double score){
+    public List<User> getGoodScore(@PathVariable double score) {
         return userService.getGoodScore(score);
     }
 
     @PostMapping("/addOne")
-    public User addOne(@RequestBody User user){
+    public User addOne(@RequestBody User user) {
         return userService.addUser(user);
     }
 
     @PostMapping("/update")
-    public User update(@RequestBody User user){
+    public User update(@RequestBody User user) {
         return userService.update(user);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable String id){
+    public void delete(@PathVariable String id) {
         userService.delete(id);
     }
 
 
-
     //似乎是匹配任意一个或几个属性值(不知道哪错了。。。，不能实现)
     @GetMapping("/getByExample")
-    public List<User> getByExample(@RequestBody User user){
+    public List<User> getByExample(@RequestBody User user) {
         return userService.findByExample(user);
     }
 
+//    @RequestMapping(method = RequestMethod.POST)
+//    public List<Parcel> getRecommendParcel(@PathVariable long userId) {
+//
+//    }
 
 
 //    @PostMapping("/getByName")
 //    public String getByName(@RequestBody User user){
 //        userService.findByName()
 //    }
-
 
 
 //    @Autowired

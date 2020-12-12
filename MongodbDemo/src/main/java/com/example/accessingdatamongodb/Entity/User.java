@@ -1,16 +1,18 @@
 package com.example.accessingdatamongodb.Entity;
 
+import io.swagger.annotations.ApiModel;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(value="User")
+@ApiModel(value = "用户实体类")
+@Document(value = "User")
 public class User {
 
     @Id
-    private String id;
+    private Long id;
 
     /* 学号 */
-    private String studentID;
+    private Long studentID;
 
     /* 真实姓名 */
     private String name;
@@ -28,9 +30,11 @@ public class User {
 
     private Tag tag;
 
-    public User(){};
+    public User() {
+    }
 
-    public User(String studentID, String name, double balance, String avatar_url, String open_id, double creditScore, Tag tag) {
+
+    public User(Long studentID, String name, double balance, String avatar_url, String open_id, double creditScore, Tag tag) {
         this.studentID = studentID;
         this.name = name;
         this.balance = balance;
@@ -40,11 +44,11 @@ public class User {
         this.tag = tag;
     }
 
-    public String getStudentID() {
+    public Long getStudentID() {
         return studentID;
     }
 
-    public void setStudentID(String studentID) {
+    public void setStudentID(Long studentID) {
         this.studentID = studentID;
     }
 
@@ -72,11 +76,11 @@ public class User {
         this.tag = tag;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
