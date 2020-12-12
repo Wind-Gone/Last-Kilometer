@@ -9,11 +9,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(value = "User")
 public class User {
 
-    @Id
-    @ApiModelProperty(value = "期望取快递的区域",hidden = true)
-    private Long id;
+
+    @ApiModelProperty(value = "期望取快递的区域")
+    private Long region_id;
 
     /* 学号 */
+    @Id
     @ApiModelProperty(value = "用户ID")
     private Long studentID;
 
@@ -40,17 +41,6 @@ public class User {
     private Tag tag;
 
     public User() {
-    }
-
-
-    public User(Long studentID, String name, double balance, String avatar_url, String open_id, double creditScore, Tag tag) {
-        this.studentID = studentID;
-        this.name = name;
-        this.balance = balance;
-        this.avatar_url = avatar_url;
-        this.open_id = open_id;
-        this.creditScore = creditScore;
-        this.tag = tag;
     }
 
     public Long getStudentID() {
@@ -85,13 +75,7 @@ public class User {
         this.tag = tag;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -117,14 +101,25 @@ public class User {
         this.creditScore = creditScore;
     }
 
+    public Long getRegion_id() {
+        return region_id;
+    }
+
+    public void setRegion_id(Long region_id) {
+        this.region_id = region_id;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "id='" + id + '\'' +
+                "region_id=" + region_id +
+                ", studentID=" + studentID +
                 ", name='" + name + '\'' +
                 ", balance=" + balance +
+                ", avatar_url='" + avatar_url + '\'' +
+                ", open_id='" + open_id + '\'' +
                 ", creditScore=" + creditScore +
+                ", tag=" + tag +
                 '}';
     }
-
 }
