@@ -19,7 +19,6 @@ public class ParcelService {
 
 
     public String addOne(Parcel parcel) {
-        // 做数据验证
         Preconditions.checkNotNull(parcel, "未输入包裹信息");
         return parcelRepository.insert(parcel).getId();
     }

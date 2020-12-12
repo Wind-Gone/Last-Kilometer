@@ -1,5 +1,6 @@
 package com.example.accessingdatamongodb.Entity;
 
+import com.example.accessingdatamongodb.enums.ParcelType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.Id;
@@ -15,6 +16,12 @@ public class Parcel {
 
     @ApiModelProperty(value = "快递收件地址")
     private String address;
+
+    @ApiModelProperty(value = "快递大小")
+    private int parcelSize;
+
+    @ApiModelProperty(value = "具体种类")
+    private ParcelType parcelType;
 
     @ApiModelProperty(value = "用户头像URL")
     private String author_avatar_url;
@@ -43,16 +50,16 @@ public class Parcel {
     @ApiModelProperty(value = "电话")
     private String mobile;
 
-    @ApiModelProperty(value = "Note")
+    @ApiModelProperty(value = "备注")
     private String note;
 
     @ApiModelProperty(value = "pickup_code")
     private String pickup_code;
 
-    @ApiModelProperty(value = "publish_time")
+    @ApiModelProperty(value = "包裹信息发布时间")
     private Date publish_time;
 
-    @ApiModelProperty(value = "status")
+    @ApiModelProperty(value = "包裹目前状态:已被接单、未接单")
     private int status;
 
     @ApiModelProperty(value = "更新时间")
@@ -61,8 +68,10 @@ public class Parcel {
     @ApiModelProperty(value = "查看次数")
     private int watch_count;
 
-    public Parcel(String address, String author_avatar_url, String author_id, String author_name, String author_parcel_name, String blockNum, String content, String deliver_id, String image_url, String mobile, String note, String pickup_code, Date publish_time, int status, Date update_time, int watch_count) {
+    public Parcel(String address, int parcelSize, ParcelType parcelType, String author_avatar_url, String author_id, String author_name, String author_parcel_name, String blockNum, String content, String deliver_id, String image_url, String mobile, String note, String pickup_code, Date publish_time, int status, Date update_time, int watch_count) {
         this.address = address;
+        this.parcelSize = parcelSize;
+        this.parcelType = parcelType;
         this.author_avatar_url = author_avatar_url;
         this.author_id = author_id;
         this.author_name = author_name;
@@ -216,11 +225,29 @@ public class Parcel {
         this.watch_count = watch_count;
     }
 
+    public int getParcelSize() {
+        return parcelSize;
+    }
+
+    public void setParcelSize(int parcelSize) {
+        this.parcelSize = parcelSize;
+    }
+
+    public ParcelType getParcelType() {
+        return parcelType;
+    }
+
+    public void setParcelType(ParcelType parcelType) {
+        this.parcelType = parcelType;
+    }
+
     @Override
     public String toString() {
-        return "Post{" +
+        return "Parcel{" +
                 "id='" + id + '\'' +
                 ", address='" + address + '\'' +
+                ", parcelSize=" + parcelSize +
+                ", parcelType=" + parcelType +
                 ", author_avatar_url='" + author_avatar_url + '\'' +
                 ", author_id='" + author_id + '\'' +
                 ", author_name='" + author_name + '\'' +
@@ -232,9 +259,9 @@ public class Parcel {
                 ", mobile='" + mobile + '\'' +
                 ", note='" + note + '\'' +
                 ", pickup_code='" + pickup_code + '\'' +
-                ", publish_time='" + publish_time + '\'' +
+                ", publish_time=" + publish_time +
                 ", status=" + status +
-                ", update_time='" + update_time + '\'' +
+                ", update_time=" + update_time +
                 ", watch_count=" + watch_count +
                 '}';
     }

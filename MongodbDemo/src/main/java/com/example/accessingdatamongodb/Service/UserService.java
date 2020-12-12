@@ -64,8 +64,10 @@ public class UserService {
     }
 
     public List<RecommendedItem> getRecommendParcel(long userId) throws IOException, TasteException {
+        System.out.println("1");
         // 从文件加载数据
         DataModel model = new FileDataModel(new File("D:\\hu\\Study\\Project\\Last-Kilometer\\MongodbDemo\\src\\main\\java\\com\\example\\accessingdatamongodb\\data.csv"));
+        System.out.println("2");
         // 指定用户相似度计算方法，这里采用皮尔森相关度
         UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
         // 指定用户邻居数量，这里为2

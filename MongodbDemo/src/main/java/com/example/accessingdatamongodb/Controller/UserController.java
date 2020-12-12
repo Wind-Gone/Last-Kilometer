@@ -91,17 +91,17 @@ public class UserController {
      * @param id 数据库_id
      * @return void
      */
-    @ApiOperation("更新用户信息")
+    @ApiOperation("删除用户信息")
     @DeleteMapping("/delete/{id}")
-    public ResponseValue<?> delete(@Validated @PathVariable String id) {
+    public ResponseValue<?> delete(@PathVariable String id) {
         userService.delete(id);
         return ResponseValue.success(null);
     }
 
-
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseValue<?> getRecommendParcel(@Validated @PathVariable long userId) throws IOException, TasteException {
-        List<RecommendedItem> parcels = userService.getRecommendParcel(userId);
+    @ApiOperation("推荐系统")
+    @GetMapping("/recommend/{id}")
+    public ResponseValue<?> getRecommendParcel(@Validated @PathVariable long id) throws IOException, TasteException {
+        List<RecommendedItem> parcels = userService.getRecommendParcel(id);
         return ResponseValue.success(parcels);
     }
 

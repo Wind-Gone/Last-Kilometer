@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Post")
+@RequestMapping("/Parcel")
 public class ParcelController {
     @Autowired
     ParcelService parcelService;
