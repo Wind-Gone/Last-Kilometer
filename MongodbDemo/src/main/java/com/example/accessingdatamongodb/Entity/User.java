@@ -16,6 +16,10 @@ public class User {
     @ApiModelProperty(value = "用户ID")
     private Long studentID;
 
+    /* 期望取快递的区域id */
+    @ApiModelProperty(value = "期望取快递的区域")
+    private Long region_id;
+
     /* 真实姓名 */
     @ApiModelProperty(value = "用户姓名")
     private String name;

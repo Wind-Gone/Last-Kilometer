@@ -5,10 +5,13 @@ import com.example.accessingdatamongodb.Entity.User;
 import com.example.accessingdatamongodb.Service.UserService;
 import com.example.accessingdatamongodb.dto.ResponseValue;
 import io.swagger.annotations.ApiOperation;
+import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -26,8 +29,8 @@ public class UserController {
      */
     @ApiOperation("获取所有用户信息")
     @GetMapping("/getAll")
-    public List<User> getAll() {
-        return userService.findAll();
+    public ResponseValue<?> getAll() {
+        return ResponseValue.success(userService.findAll());
     }
 
     /**
@@ -38,11 +41,12 @@ public class UserController {
      */
     @ApiOperation("获取单个用户信息")
     @GetMapping("/getByName/{name}")
-    public List<User> getByName(@PathVariable String name) {
-        return userService.getByName(name);
+    public ResponseValue<?> getByName(@Validated @PathVariable String name) {
+        return ResponseValue.success(userService.getByName(name));
     }
 
     //大于score的用户
+
     /**
      * 查询用户（通过信誉分）
      *
@@ -51,32 +55,34 @@ public class UserController {
      */
     @ApiOperation("获取大于某个信誉分阈值的用户们")
     @GetMapping("/getGoodScore/{score}")
-    public List<User> getGoodScore(@PathVariable double score) {
-        return userService.getGoodScore(score);
+    public ResponseValue<?> getGoodScore(@Validated @PathVariable double score) {
+        return ResponseValue.success(userService.getGoodScore(score));
     }
 
     /**
      * 增加一个用户
      *
-     * @param user  用户信息
+     * @param user 用户信息
      * @return 该用户
      */
     @ApiOperation("增加一个用户")
     @PostMapping("/addOne")
-    public User addOne(@RequestBody User user) {
-        return userService.addUser(user);
+    public ResponseValue<?> addOne(@Validated @RequestBody User user) {
+        userService.addUser(user);
+        return ResponseValue.success(user.getStudentID());
     }
 
     /**
      * 更新用户信息
      *
-     * @param user  用户信息
+     * @param user 用户信息
      * @return 该用户
      */
     @ApiOperation("更新用户信息")
     @PostMapping("/update")
-    public User update(@RequestBody User user) {
-        return userService.update(user);
+    public ResponseValue<?> update(@Validated @RequestBody User user) {
+        userService.update(user);
+        return ResponseValue.success(null);
     }
 
     /**
@@ -87,13 +93,14 @@ public class UserController {
      */
     @ApiOperation("更新用户信息")
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable String id) {
+    public ResponseValue<?> delete(@Validated @PathVariable String id) {
         userService.delete(id);
+        return ResponseValue.success(null);
     }
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseValue<?> getRecommendParcel(@PathVariable long userId) {
+    public ResponseValue<?> getRecommendParcel(@Validated @PathVariable long userId) throws IOException, TasteException {
         List<RecommendedItem> parcels = userService.getRecommendParcel(userId);
         return ResponseValue.success(parcels);
     }

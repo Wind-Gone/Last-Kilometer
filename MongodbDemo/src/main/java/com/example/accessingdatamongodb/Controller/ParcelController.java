@@ -5,6 +5,7 @@ import com.example.accessingdatamongodb.Service.ParcelService;
 import com.example.accessingdatamongodb.dto.ResponseValue;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public class ParcelController {
      */
     @ApiOperation("新增一条包裹信息")
     @PostMapping("/addOne")
-    public ResponseValue<?> addOne(@RequestBody Parcel parcel) {
+    public ResponseValue<?> addOne(@Validated @RequestBody Parcel parcel) {
         String id = parcelService.addOne(parcel);
         return ResponseValue.success(id);
     }
@@ -48,7 +49,7 @@ public class ParcelController {
      */
     @ApiOperation("更新一条包裹信息")
     @PostMapping("/update")
-    public ResponseValue<?> update(@RequestBody Parcel parcel) {
+    public ResponseValue<?> update(@Validated @RequestBody Parcel parcel) {
         parcelService.update(parcel);
         return ResponseValue.success(null);
     }
@@ -62,7 +63,7 @@ public class ParcelController {
      */
     @ApiOperation("删除一条包裹信息")
     @DeleteMapping("/delete/{id}")
-    public ResponseValue<?> delete(@PathVariable Long id) {
+    public ResponseValue<?> delete(@Validated @PathVariable Long id) {
         parcelService.delete(id);
         return ResponseValue.success(null);
     }
