@@ -3,6 +3,8 @@ package com.example.accessingdatamongodb.Controller;
 
 import com.example.accessingdatamongodb.Entity.User;
 import com.example.accessingdatamongodb.Service.UserService;
+import com.example.accessingdatamongodb.dto.ResponseValue;
+import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,17 +49,17 @@ public class UserController {
         userService.delete(id);
     }
 
-
     //似乎是匹配任意一个或几个属性值(不知道哪错了。。。，不能实现)
     @GetMapping("/getByExample")
     public List<User> getByExample(@RequestBody User user) {
         return userService.findByExample(user);
     }
 
-//    @RequestMapping(method = RequestMethod.POST)
-//    public List<Parcel> getRecommendParcel(@PathVariable long userId) {
-//
-//    }
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseValue<?> getRecommendParcel(@PathVariable long userId) {
+        List<RecommendedItem> parcels = userService.getRecommendParcel(userId);
+        return ResponseValue.success(parcels);
+    }
 
 
 //    @PostMapping("/getByName")

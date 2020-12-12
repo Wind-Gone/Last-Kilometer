@@ -1,0 +1,13 @@
+com\example\accessingdatamongodb\AccessingDataMongodbApplication.class
+com\example\accessingdatamongodb\Controller\UserController.class
+com\example\accessingdatamongodb\dto\ResponseValue.class
+com\example\accessingdatamongodb\Service\ParcelService.class
+com\example\accessingdatamongodb\Entity\User.class
+com\example\accessingdatamongodb\Service\UserService.class
+com\example\accessingdatamongodb\dto\ErrorCode.class
+com\example\accessingdatamongodb\Entity\Parcel.class
+com\example\accessingdatamongodb\config\Swagger2Config.class
+com\example\accessingdatamongodb\Repository\UserRepository.class
+com\example\accessingdatamongodb\Entity\Tag.class
+com\example\accessingdatamongodb\Controller\ParcelController.class
+com\example\accessingdatamongodb\Repository\ParcelRepository.class
