@@ -17,34 +17,49 @@ public class Parcel {
     @ApiModelProperty(value = "快递收件地址")
     private String address;
 
+    @ApiModelProperty(value = "用户头像URL")
     private String author_avatar_url;
 
+    @ApiModelProperty(value = "用户id")
     private String author_id;
 
+    @ApiModelProperty(value = "用户姓名")
     private String author_name;
 
+    @ApiModelProperty(value = "用户包裹名字")
     private String author_parcel_name;
 
+    @ApiModelProperty(value = "楼号")
     private String blockNum;
 
+    @ApiModelProperty(value = "包裹简介")
     private String content;
 
+    @ApiModelProperty(value = "快递单号")
     private String deliver_id;
 
+    @ApiModelProperty(value = "快递图片URL")
     private String image_url;
 
+    @ApiModelProperty(value = "电话")
     private String mobile;
 
+    @ApiModelProperty(value = "Note")
     private String note;
 
+    @ApiModelProperty(value = "pickup_code")
     private String pickup_code;
 
+    @ApiModelProperty(value = "publish_time")
     private Date publish_time;
 
+    @ApiModelProperty(value = "status")
     private int status;
 
+    @ApiModelProperty(value = "更新时间")
     private Date update_time;
 
+    @ApiModelProperty(value = "查看次数")
     private int watch_count;
 
     public Parcel(Long id, String address, String author_avatar_url, String author_id, String author_name, String author_parcel_name, String blockNum, String content, String deliver_id, String image_url, String mobile, String note, String pickup_code, Date publish_time, int status, Date update_time, int watch_count) {

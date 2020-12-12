@@ -1,6 +1,7 @@
 package com.example.accessingdatamongodb.Entity;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,25 +10,33 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 
     @Id
+    @ApiModelProperty(value = "期望取快递的区域",hidden = true)
     private Long id;
 
     /* 学号 */
+    @ApiModelProperty(value = "用户ID")
     private Long studentID;
 
     /* 真实姓名 */
+    @ApiModelProperty(value = "用户姓名")
     private String name;
 
     /* 余额 */
+    @ApiModelProperty(value = "余额")
     private double balance;
 
     /* avatar_url */
+    @ApiModelProperty(value = "头像URL")
     private String avatar_url;
 
     /* openid */
+    @ApiModelProperty(value = "openID")
     private String open_id;
 
+    @ApiModelProperty(value = "信用分")
     private double creditScore;
 
+    @ApiModelProperty(value = "标签")
     private Tag tag;
 
     public User() {
