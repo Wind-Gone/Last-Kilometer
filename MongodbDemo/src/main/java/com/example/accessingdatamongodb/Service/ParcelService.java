@@ -18,11 +18,10 @@ public class ParcelService {
     }
 
 
-    public Long addOne(Parcel parcel) {
+    public String addOne(Parcel parcel) {
         // 做数据验证
         Preconditions.checkNotNull(parcel, "未输入包裹信息");
-        parcelRepository.insert(parcel);
-        return parcel.getId();
+        return parcelRepository.insert(parcel).getId();
     }
 
     public void update(Parcel parcel) {

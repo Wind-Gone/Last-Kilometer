@@ -9,12 +9,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(value = "User")
 public class User {
 
-
-    @ApiModelProperty(value = "期望取快递的区域")
-    private Long region_id;
+    @Id
+    private String id;
 
     /* 学号 */
-    @Id
     @ApiModelProperty(value = "用户ID")
     private Long studentID;
 
@@ -43,12 +41,46 @@ public class User {
     public User() {
     }
 
+    public User(Long studentID, String name, double balance, String avatar_url, String open_id, double creditScore, Tag tag) {
+        this.studentID = studentID;
+        this.name = name;
+        this.balance = balance;
+        this.avatar_url = avatar_url;
+        this.open_id = open_id;
+        this.creditScore = creditScore;
+        this.tag = tag;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Long getStudentID() {
         return studentID;
     }
 
     public void setStudentID(Long studentID) {
         this.studentID = studentID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 
     public String getAvatar_url() {
@@ -67,32 +99,6 @@ public class User {
         this.open_id = open_id;
     }
 
-    public Tag getTag() {
-        return tag;
-    }
-
-    public void setTag(Tag tag) {
-        this.tag = tag;
-    }
-
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
     public double getCreditScore() {
         return creditScore;
     }
@@ -101,18 +107,18 @@ public class User {
         this.creditScore = creditScore;
     }
 
-    public Long getRegion_id() {
-        return region_id;
+    public Tag getTag() {
+        return tag;
     }
 
-    public void setRegion_id(Long region_id) {
-        this.region_id = region_id;
+    public void setTag(Tag tag) {
+        this.tag = tag;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "region_id=" + region_id +
+                "id='" + id + '\'' +
                 ", studentID=" + studentID +
                 ", name='" + name + '\'' +
                 ", balance=" + balance +

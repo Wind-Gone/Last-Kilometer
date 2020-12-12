@@ -11,8 +11,7 @@ import java.util.Date;
 @Document(value = "Parcel")
 public class Parcel {
     @Id
-    @ApiModelProperty(value = "快递id", hidden = true)
-    private Long id;
+    private String id;
 
     @ApiModelProperty(value = "快递收件地址")
     private String address;
@@ -62,8 +61,7 @@ public class Parcel {
     @ApiModelProperty(value = "查看次数")
     private int watch_count;
 
-    public Parcel(Long id, String address, String author_avatar_url, String author_id, String author_name, String author_parcel_name, String blockNum, String content, String deliver_id, String image_url, String mobile, String note, String pickup_code, Date publish_time, int status, Date update_time, int watch_count) {
-        this.id = id;
+    public Parcel(String address, String author_avatar_url, String author_id, String author_name, String author_parcel_name, String blockNum, String content, String deliver_id, String image_url, String mobile, String note, String pickup_code, Date publish_time, int status, Date update_time, int watch_count) {
         this.address = address;
         this.author_avatar_url = author_avatar_url;
         this.author_id = author_id;
@@ -82,11 +80,11 @@ public class Parcel {
         this.watch_count = watch_count;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

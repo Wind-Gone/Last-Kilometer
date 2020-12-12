@@ -36,7 +36,7 @@ public class ParcelController {
     @ApiOperation("新增一条包裹信息")
     @PostMapping("/addOne")
     public ResponseValue<?> addOne(@RequestBody Parcel parcel) {
-        Long id = parcelService.addOne(parcel);
+        String id = parcelService.addOne(parcel);
         return ResponseValue.success(id);
     }
 
