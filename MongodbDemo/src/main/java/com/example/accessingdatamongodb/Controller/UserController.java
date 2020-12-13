@@ -93,7 +93,7 @@ public class UserController {
      */
     @ApiOperation("删除用户信息")
     @DeleteMapping("/delete/{id}")
-    public ResponseValue<?> delete(@PathVariable String id) {
+    public ResponseValue<?> delete(@Validated @PathVariable String id) {
         userService.delete(id);
         return ResponseValue.success(null);
     }

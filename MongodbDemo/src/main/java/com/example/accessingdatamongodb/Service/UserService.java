@@ -77,7 +77,8 @@ public class UserService {
         Recommender recommender = new GenericUserBasedRecommender(model,
                 neighborhood, similarity);
         // 得到指定用户的推荐结果，这里是得到用户1的两个推荐
-        List<RecommendedItem> recommendations = recommender.recommend(userId, 2);
+        System.out.println("3");
+        List<RecommendedItem> recommendations = recommender.recommend(userId, 1);
         // 打印推荐结果
         for (RecommendedItem recommendation : recommendations) {
             System.out.println(recommendation);
