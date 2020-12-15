@@ -39,6 +39,8 @@ public class UserService {
 
     public User update(User user) {
         Preconditions.checkNotNull(user, "未输入要新增的用户实体");
+        String t=userRepository.findFirstByName(user.getName()).getId();
+        user.setId(t);
         return userRepository.save(user);
     }
 
