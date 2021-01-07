@@ -2,11 +2,13 @@ package com.example.accessingdatamongodb.Controller;
 
 
 import com.example.accessingdatamongodb.Entity.User;
+import com.example.accessingdatamongodb.Repository.MongodbExplain;
 import com.example.accessingdatamongodb.Service.UserService;
 import com.example.accessingdatamongodb.dto.ResponseValue;
 import io.swagger.annotations.ApiOperation;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private MongodbExplain mongodbExplain;
 
     /**
      * 获取所有用户信息
@@ -41,9 +46,23 @@ public class UserController {
      */
     @ApiOperation("获取单个用户信息")
     @GetMapping("/getByName/{name}")
-    public ResponseValue<?> getByName(@Validated @PathVariable String name) {
+    public ResponseValue<?> getByName(@PathVariable String name) {
         return ResponseValue.success(userService.getByName(name));
     }
+
+    /**
+     * 查询用户（通过名字）
+     *
+     * @param id 单个用户名
+     * @return 用户信息
+     */
+    @ApiOperation("获取单个用户信息")
+    @GetMapping("/getById/{id}")
+    public ResponseValue<?> getById(@PathVariable Long id) {
+        return ResponseValue.success(userService.getById(id));
+    }
+
+
 
     //大于score的用户
 
@@ -103,6 +122,13 @@ public class UserController {
     public ResponseValue<?> getRecommendParcel(@Validated @PathVariable long id) throws IOException, TasteException {
         List<RecommendedItem> parcels = userService.getRecommendParcel(id);
         return ResponseValue.success(parcels);
+    }
+
+    @ApiOperation("测试explain")
+    @GetMapping("/explainAll")
+    public @NotNull ResponseValue<?> explainAll() {
+        mongodbExplain.postConstrucut();
+        return ResponseValue.success(null);
     }
 
 

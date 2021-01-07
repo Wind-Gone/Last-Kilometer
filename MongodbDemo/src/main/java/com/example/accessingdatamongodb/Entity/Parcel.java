@@ -4,15 +4,25 @@ import com.example.accessingdatamongodb.enums.ParcelType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
 @ApiModel(value = "快递实体类")
 @Document(value = "Parcel")
+@CompoundIndexes({
+        @CompoundIndex(def = "{'author_id': 1, 'update_time': -1}")
+})
 public class Parcel {
     @Id
     private String id;
+
+    @Indexed
+    @ApiModelProperty(value = "用户id")
+    private String author_id;
 
     @ApiModelProperty(value = "快递收件地址")
     private String address;
@@ -25,9 +35,6 @@ public class Parcel {
 
     @ApiModelProperty(value = "用户头像URL")
     private String author_avatar_url;
-
-    @ApiModelProperty(value = "用户id")
-    private String author_id;
 
     @ApiModelProperty(value = "用户姓名")
     private String author_name;
@@ -53,7 +60,7 @@ public class Parcel {
     @ApiModelProperty(value = "备注")
     private String note;
 
-    @ApiModelProperty(value = "pickup_code")
+    @ApiModelProperty(value = "取件码")
     private String pickup_code;
 
     @ApiModelProperty(value = "包裹信息发布时间")

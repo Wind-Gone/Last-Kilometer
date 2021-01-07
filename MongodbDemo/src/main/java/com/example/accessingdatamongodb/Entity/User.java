@@ -3,6 +3,7 @@ package com.example.accessingdatamongodb.Entity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @ApiModel(value = "用户实体类")
@@ -13,6 +14,7 @@ public class User {
     private String id;
 
     /* 学号 */
+    @Indexed
     @ApiModelProperty(value = "用户ID")
     private Long studentID;
 

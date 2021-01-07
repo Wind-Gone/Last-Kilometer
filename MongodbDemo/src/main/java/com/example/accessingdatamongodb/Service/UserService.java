@@ -2,6 +2,8 @@ package com.example.accessingdatamongodb.Service;
 
 import com.example.accessingdatamongodb.Entity.User;
 import com.example.accessingdatamongodb.Repository.UserRepository;
+import com.example.accessingdatamongodb.redis.RedisService;
+import com.example.accessingdatamongodb.redis.UserKey;
 import com.google.common.base.Preconditions;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
@@ -13,6 +15,7 @@ import org.apache.mahout.cf.taste.neighborhood.UserNeighborhood;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 import org.apache.mahout.cf.taste.recommender.Recommender;
 import org.apache.mahout.cf.taste.similarity.UserSimilarity;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
@@ -20,28 +23,31 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    RedisService redisService;
 
     public List<User> findAll() {
         return userRepository.findAll();
     }
 
 
-    public User addUser(User user) {
+    public void addUser(User user) {
         Preconditions.checkNotNull(user, "未输入要新增的用户实体");
-        return userRepository.insert(user);
+        userRepository.insert(user);
     }
 
-    public User update(User user) {
+    public void update(User user) {
         Preconditions.checkNotNull(user, "未输入要新增的用户实体");
         String t=userRepository.findFirstByName(user.getName()).getId();
         user.setId(t);
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 
     public void delete(String id) {
@@ -56,9 +62,16 @@ public class UserService {
         return userRepository.findAll(e);
     }
 
-    public List<User> getByName(String name) {
-        Preconditions.checkNotNull(name, "未输入要查询的用户姓名");
-        return userRepository.findByName(name);
+    public User getById(Long id) {
+        Preconditions.checkNotNull(id, "未输入要查询的用户Id");
+        //对象缓存
+        User user = redisService.get(UserKey.getById, "" + id, User.class);
+        if (user != null) {
+            return user;
+        }
+        user = userRepository.findBystudentID(id);
+        redisService.set(UserKey.getById, "" + id, user);
+        return user;
     }
 
     public List<User> getGoodScore(double score) {
@@ -87,4 +100,10 @@ public class UserService {
         }
         return recommendations;
     }
+
+    public List<User> getByName(String name) {
+        Preconditions.checkNotNull(name, "未输入要查询的用户姓名");
+        return userRepository.findByName(name);
+    }
+
 }

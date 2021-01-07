@@ -42,7 +42,7 @@ public class CfUtil {
 
 
     public CfUtil() throws TasteException, IOException {
-        file =new File("src/main/resources/data.csv");
+        file =new File("MongodbDemo/src/main/java/com/example/accessingdatamongodb/data.csv");
         dataModel = new FileDataModel(file);
 
         /*基于物品*/
